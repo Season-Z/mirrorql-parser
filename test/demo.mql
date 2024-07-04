@@ -1,0 +1,124 @@
+[input, db=="/work/data/result/Mirror.sqlite", io=sqlite] 
+fn java_doc_token(
+    element_hash:     int,
+    parent_hash:      int,
+    code_info:        str
+);
+class JavaDocToken_EDB extends int{
+    let parent_hash:      int;
+    let code_info:        str;
+    fn init(){
+        java_doc_token(self.(int), self.parent_hash, self.code_info)
+    }
+    fn getElement() -> int {
+        result == self.(int)
+    }
+    fn getparent_hash() -> int {
+        result == self.parent_hash
+    }
+    fn getCodeInfo() -> str {
+        result == self.code_info
+    }
+}
+[input, db="/work/data/result/Mirror.sqlite", io=sqlite] 
+fn literal(
+    element_hash:     int,
+    parent_hash:      int,
+    value:            str,
+    type:             str
+);
+class Literal_EDB extends int{
+    let parent_hash:      int;
+    let value:            str;
+    let type:             str;
+    fn init(){
+        literal(self.(int), self.parent_hash, self.value, self.type)
+    }
+    fn getElement() -> int {
+        result == self.(int)
+    }
+    fn getparent_hash() -> int {
+        result == self.parent_hash
+    }
+    fn getValue() -> str {
+        result == self.value
+    }
+    fn getType() -> str {
+        result == self.type
+    }
+}
+[input, db="/work/data/result/Mirror.sqlite", io=sqlite] 
+fn position(
+    element_hash: int,
+    start:        int,
+    end:          int,
+    file_hash:    int,
+    file_path:    str,
+    file_name:    str,
+    line:         int
+);
+class Position_EDB extends int{
+    let start: int;
+    let end:   int;
+    let fhash: int;
+    let fpath: str;
+    let fname: str;
+    let line:  int;
+    fn init(){
+        position(self.(int), self.start, self.end, self.fhash, self.fpath, self.fname, self.line)
+    }
+    fn getElement() -> int {
+        result == self.(int)
+    }
+    fn getStart() -> int {
+        result == self.start
+    }
+    fn getEnd() -> int {
+        result == self.end
+    }
+    fn getFileHash() -> int {
+        result == self.fhash
+    }
+    fn getFilePath() -> str {
+        result == self.fpath
+    }
+    fn getFileName() -> str {
+        result == self.fname
+    }
+    fn getLine() -> int {
+        result == self.line
+    }
+}
+class JavaDocToken extends JavaDocToken_EDB{
+    fn getPosition() -> Position_EDB {
+        let p: Position_EDB;
+        self.getElement() == p.getElement()
+        and
+        result == p
+    }
+    fn toString() -> str{
+        result == "abcdef"
+    }
+}
+[output]
+fn feature(line1: str,line2: str,line3: str){
+    (
+        line1 == "secretkey:|515|525|/work/source/SecretAdmin.java|SecretAdmin.java|20"
+        and 
+        line2 == "key600d475fa96e30530b548c9cfbb85187|532|567|/work/source/SecretAdmin.java|SecretAdmin.java|21"
+        and 
+        line3 == "testline1"
+    )or(
+        line1 == "abc"
+        and 
+        line2 == "abcd"
+        and 
+        line3 == "testline2"
+    )or(
+        line1 == "tryit|574|579|/work/source/SecretAdmin.java|SecretAdmin.java|22"
+        and 
+        line2 == "hello"
+        and 
+        line3 == "testline3"
+    )
+}

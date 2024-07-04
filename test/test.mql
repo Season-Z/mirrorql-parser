@@ -1,0 +1,46 @@
+// use self::TaintConfig::Name;
+
+[input]
+fn class_object_access_expression(element_hash: int,
+    parent_hash: int,
+    type_hash: int
+);
+
+class OneTwoThree extends int {
+    fn init() {
+        self.(int) == 1
+        or self.(int) == 2
+        or self.(int) == 3
+    }
+}
+
+class OneTwo extends OneTwoThree {
+    fn init() {
+        self.(int) = 1
+        or self.(int) == 2
+    }
+}
+
+class TwoThree extends OneTwoThree {
+    fn init() {
+        self.(int) == 2
+        || self.(int) == 3
+    }
+}
+
+class Two extends OneTwoThree {
+    fn init() {
+        self.(int) == 2
+    }
+}
+
+[output]
+fn oneTwoThree(out: int) {
+    let o : OneTwoThree;
+    out == o.(int)
+}
+
+
+fn two(out: int) -> int {
+    result == out
+}

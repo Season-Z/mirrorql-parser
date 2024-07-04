@@ -1,0 +1,12 @@
+[package]
+name = "complier_0310" # 包名（必须）
+version = "0.1.0" # 版本号（必须）
+entry = "main" # 入口点文件，缺省为"main"，即src/main.mql，对应一个容器路径（定义下面有）
+author = "foo" # 作者（可选）
+language = "java" # 分析语言（可选，仅作标识）
+is_lib = false # 是否为库，缺省为false。若为库，则没有入口点
+
+[deps] # 依赖列表
+std = "1.0.0" # semver
+java = "1.0.0"
+tests ="1.0.0"

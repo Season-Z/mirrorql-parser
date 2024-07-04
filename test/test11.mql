@@ -1,0 +1,6 @@
+fn getCount(x: int)->int{
+    result == x
+    or
+    result == 2
+
+}
